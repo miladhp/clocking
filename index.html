@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Deputy Time Clock</title>
+</head>
+<body>
+  <button onclick="login()">Login with Deputy</button>
+  <button onclick="clockIn()">Clock In</button>
+  <button onclick="clockOut()">Clock Out</button>
+
+  <script>
+    function login() {
+      const clientId = 'eda876af1f93f03ed72...'; // Your actual client ID from the image
+      const redirectUri = encodeURIComponent('https://your-worker.username.workers.dev/callback');
+
+      window.location.href = `https://once.deputy.com/my/oauth/login?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=longlife_refresh_token`;
+    }
+
+    async function clockIn() {
+      await fetch('https://your-worker.username.workers.dev/clockin');
+    }
+
+    async function clockOut() {
+      await fetch('https://your-worker.username.workers.dev/clockout');
+    }
+  </script>
+</body>
+</html>
